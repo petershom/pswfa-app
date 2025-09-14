@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSWFA - Add Member</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="image/logo.png" alt="PSWFA Wheat Logo" class="w-12 h-12 mr-3">
+                <h1 class="text-2xl font-bold tracking-tight">PSWFA</h1>
+            </div>
+            <nav id="nav" class="hidden md:flex space-x-6"></nav>
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-green-600 p-4">
+            <nav id="mobile-nav" class="flex flex-col space-y-3"></nav>
+        </div>
+    </header>
+    <main class="container mx-auto p-6">
+        <h2 class="text-2xl font-semibold text-green-800 mb-6">Add Member</h2>
+        <div class="bg-white shadow-lg rounded-lg p-6 max-w-md mx-auto"> <!-- Adjusted width to max-w-md -->
+            <form id="memberForm" class="space-y-6">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Passport Photo:</label>
+                    <input type="file" id="passportPhotos" name="passportPhotos" accept="image/jpeg,image/jpg,image/png" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Surname:</label>
+                    <input type="text" id="surname" name="surname" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Other Names:</label>
+                    <input type="text" id="otherNames" name="otherNames" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Date of Birth:</label>
+                    <input type="date" id="dateOfBirth" name="dateOfBirth" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Gender:</label>
+                    <select id="gender" name="gender" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Occupation:</label>
+                    <input type="text" id="occupation" name="occupation" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Qualification:</label>
+                    <input type="text" id="qualification" name="qualification" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Local Government of Origin:</label>
+                    <input type="text" id="localGovernmentOfOrigin" name="localGovernmentOfOrigin" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Residential Address:</label>
+                    <textarea id="residentialAddress" name="residentialAddress" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" rows="3" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Contact(Email):</label>
+                    <input type="text" id="contact" name="contact" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Phone:</label>
+                    <input type="tel" id="phone" name="phone" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Next of Kin:</label>
+                    <input type="text" id="nextOfKin" name="nextOfKin" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Enrollment Status:</label>
+                    <select id="enrollmentStatus" name="enrollmentStatus" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                        <option value="">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Date of Enrollment:</label>
+                    <input type="date" id="dateEnrollment" name="dateEnrollment" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Short Farm History:</label>
+                    <textarea id="shortFarmHistory" name="shortFarmHistory" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" rows="3" required></textarea>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Referee LGA Coordinator:</label>
+                    <input type="text" id="refereeLgaCoordinator" name="refereeLgaCoordinator" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Referee Group Coordinator:</label>
+                    <input type="text" id="refereeGroupCoordinator" name="refereeGroupCoordinator" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Crop Variety:</label>
+                    <input type="text" id="cropVariety" name="cropVariety" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Farming Experience (years):</label>
+                    <input type="number" id="farmingExperience" name="farmingExperience" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Irrigation Method:</label>
+                    <input type="text" id="irrigationMethod" name="irrigationMethod" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Membership Status:</label>
+                    <select id="membershipStatus" name="membershipStatus" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                        <option value="">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Location:</label>
+                    <input type="text" id="location" name="location" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-1">Farm Size (hectares):</label>
+                    <input type="number" id="farmSize" name="farmSize" step="0.01" class="border border-gray-300 p-3 w-full rounded focus:outline-none focus:border-green-600 transition duration-200" required>
+                </div>
+                <button type="submit" id="submitButton" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-200 w-full">Add Member</button>
+            </form>
+        </div>
+        <a href="admin.html" class="mt-6 inline-block text-green-600 hover:underline">Back to Member List</a>
+    </main>
+    <footer class="bg-green-700 text-white text-center p-6 mt-8">
+        <div class="flex justify-center space-x-6 mb-4">
+            <a href="index.html#about" class="hover:text-yellow-200 transition duration-200">About</a>
+            <a href="contact.html" class="hover:text-yellow-200 transition duration-200">Contact</a>
+        </div>
+        <p>&copy; 2025 Plateau State Wheat Farmers Association. All rights reserved.</p>
+    </footer>
+    <script>
+        function updateNav() {
+            const token = localStorage.getItem('token');
+            const navContent = `
+                <a href="index.html" class="hover:text-yellow-200 transition duration-200">Home</a>
+                <a href="index.html#about" class="hover:text-yellow-200 transition duration-200">About</a>
+                <a href="contact.html" class="hover:text-yellow-200 transition duration-200">Contact</a>
+            `;
+            let authContent = '';
+            if (token) {
+                fetch('/api/user', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        alert('Session expired. Please login again.');
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    return response.json();
+                })
+                .then(user => {
+                    if (user.role === 'admin') {
+                        authContent += `<a href="admin.html" class="hover:text-yellow-200 transition duration-200">Members</a>`;
+                        authContent += `<a href="admin-news.html" class="hover:text-yellow-200 transition duration-200">News</a>`;
+                    }
+                    authContent += `<button onclick="logout()" class="hover:text-yellow-200 transition duration-200">Logout</button>`;
+                    document.getElementById('nav').innerHTML = navContent + authContent;
+                    document.getElementById('mobile-nav').innerHTML = navContent + authContent;
+                });
+            } else {
+                authContent = `
+                    <a href="register.html" class="hover:text-yellow-200 transition duration-200">Register</a>
+                    <a href="login.html" class="hover:text-yellow-200 transition duration-200">Login</a>
+                `;
+                document.getElementById('nav').innerHTML = navContent + authContent;
+                document.getElementById('mobile-nav').innerHTML = navContent + authContent;
+            }
+        }
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        }
+        updateNav();
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const token = localStorage.getItem('token');
+        const urlParams = new URLSearchParams(window.location.search);
+        const memberId = urlParams.get('id');
+        const submitButton = document.getElementById('submitButton');
+
+        if (!token) {
+            alert('Please login to manage members');
+            window.location.href = 'login.html';
+        } else {
+            fetch('/api/user', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(response => {
+                if (response.status === 401 || response.status === 403) {
+                    alert('Session expired. Please login again.');
+                    localStorage.removeItem('token');
+                    window.location.href = 'login.html';
+                }
+                return response.json();
+            })
+            .then(user => {
+                if (user.role !== 'admin') {
+                    alert('Admin access required');
+                    window.location.href = 'index.html';
+                } else if (memberId) {
+                    fetch(`/api/members/${memberId}`, {
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    })
+                    .then(response => response.json())
+                    .then(member => {
+                        document.getElementById('surname').value = member.surname;
+                        document.getElementById('otherNames').value = member.otherNames;
+                        document.getElementById('dateOfBirth').value = member.dateOfBirth.split('T')[0];
+                        document.getElementById('gender').value = member.gender;
+                        document.getElementById('occupation').value = member.occupation;
+                        document.getElementById('qualification').value = member.qualification;
+                        document.getElementById('localGovernmentOfOrigin').value = member.localGovernmentOfOrigin;
+                        document.getElementById('residentialAddress').value = member.residentialAddress;
+                        document.getElementById('phone').value = member.phone;
+                        document.getElementById('nextOfKin').value = member.nextOfKin;
+                        document.getElementById('enrollmentStatus').value = member.enrollmentStatus;
+                        document.getElementById('dateEnrollment').value = member.dateEnrollment.split('T')[0];
+                        document.getElementById('shortFarmHistory').value = member.shortFarmHistory;
+                        document.getElementById('refereeLgaCoordinator').value = member.refereeLgaCoordinator;
+                        document.getElementById('refereeGroupCoordinator').value = member.refereeGroupCoordinator;
+                        document.getElementById('cropVariety').value = member.cropVariety;
+                        document.getElementById('farmingExperience').value = member.farmingExperience;
+                        document.getElementById('irrigationMethod').value = member.irrigationMethod;
+                        document.getElementById('membershipStatus').value = member.membershipStatus;
+                        document.getElementById('location').value = member.location;
+                        document.getElementById('farmSize').value = member.farmSize;
+                        document.getElementById('contact').value = member.contact;
+                        submitButton.textContent = 'Update Member';
+                    });
+                }
+            });
+        }
+
+        document.getElementById('memberForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            console.log('FormData:', Object.fromEntries(formData));
+
+            const files = document.getElementById('passportPhotos').files;
+            if (files.length > 0) {
+                formData.append('passportPhotos', files[0]);
+            }
+
+            const isUpdate = submitButton.textContent === 'Update Member';
+            const url = isUpdate ? `/api/members/${memberId}` : '/api/members';
+            const method = isUpdate ? 'PUT' : 'POST';
+
+            fetch(url, {
+                method: method,
+                headers: { 'Authorization': `Bearer ${token}` },
+                body: formData
+            }).then(response => response.json())
+              .then(data => {
+                  alert(data.message);
+                  if (response.ok) {
+                      document.getElementById('surname').value = '';
+                      document.getElementById('otherNames').value = '';
+                      document.getElementById('dateOfBirth').value = '';
+                      document.getElementById('gender').value = '';
+                      document.getElementById('occupation').value = '';
+                      document.getElementById('qualification').value = '';
+                      document.getElementById('localGovernmentOfOrigin').value = '';
+                      document.getElementById('residentialAddress').value = '';
+                      document.getElementById('phone').value = '';
+                      document.getElementById('nextOfKin').value = '';
+                      document.getElementById('enrollmentStatus').value = '';
+                      document.getElementById('dateEnrollment').value = '';
+                      document.getElementById('shortFarmHistory').value = '';
+                      document.getElementById('refereeLgaCoordinator').value = '';
+                      document.getElementById('refereeGroupCoordinator').value = '';
+                      document.getElementById('cropVariety').value = '';
+                      document.getElementById('farmingExperience').value = '';
+                      document.getElementById('irrigationMethod').value = '';
+                      document.getElementById('membershipStatus').value = '';
+                      document.getElementById('location').value = '';
+                      document.getElementById('farmSize').value = '';
+                      document.getElementById('contact').value = '';
+                      if (isUpdate) {
+                          submitButton.textContent = 'Add Member';
+                      }
+                      window.location.href = 'admin.html';
+                  }
+              })
+              .catch(error => {
+                  console.error('Fetch error:', error);
+                  alert('An error occurred while submitting the member');
+              });
+        });
+    </script>
+</body>
+</html>

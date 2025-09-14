@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSWFA - Home</title>
+    <link rel="icon" type="image/x-icon" href="image/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-green-700 text-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto p-4 md:p-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="image/logo.png" alt="PSWFA Wheat Logo" class="w-10 md:w-12 h-10 md:h-12 mr-2 md:mr-3">
+                <h1 class="text-xl md:text-2xl font-bold tracking-tight">PSWFA</h1>
+            </div>
+            <nav id="nav" class="hidden md:flex space-x-6"></nav>
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-green-600 px-4 py-3">
+            <nav id="mobile-nav" class="flex flex-col space-y-2 text-sm"></nav>
+        </div>
+    </header>
+    <main>
+        <section id="hero" class="hero bg-cover bg-center h-64 md:h-96 flex items-center justify-center text-white">
+            <div class="text-center bg-black bg-opacity-60 p-4 md:p-8 rounded-lg">
+                <h2 class="text-xl md:text-4xl font-bold mb-2">Welcome to PSWFA</h2>
+                <p class="text-sm md:text-lg">Supporting wheat farmers in Plateau State, Nigeria, for sustainable growth and prosperity.</p>
+            </div>
+        </section>
+        <section id="about" class="container mx-auto px-4 py-6 md:p-6 grid md:grid-cols-2 gap-4 md:gap-8">
+            <div>
+                <h3 class="text-lg md:text-2xl font-semibold text-green-800 mb-3 md:mb-4">About PSWFA</h3>
+                <p class="text-gray-700 text-sm md:text-base leading-relaxed">
+                    The Plateau State Wheat Farmers Association (PSWFA) is dedicated to empowering wheat farmers through education, resources, and community support. Our mission is to enhance agricultural productivity, promote sustainable farming practices, and improve the livelihoods of farmers in Plateau State. Established in 2010, we connect farmers with markets, provide training on modern techniques, and advocate for better policies.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-lg md:text-2xl font-semibold text-green-800 mb-3 md:mb-4">Latest News</h3>
+                <div id="newsList" class="space-y-4 md:space-y-6 text-gray-700 text-sm md:text-base"></div>
+            </div>
+        </section>
+    </main>
+    <footer class="bg-green-700 text-white text-center px-4 py-4 md:p-6 mt-6 md:mt-8">
+        <div class="flex justify-center space-x-4 md:space-x-6 mb-3 md:mb-4 text-sm md:text-base">
+            <a href="index.html#about" class="hover:text-yellow-200 transition duration-200">About</a>
+            <a href="contact.html" class="hover:text-yellow-200 transition duration-200">Contact</a>
+        </div>
+        <p class="text-xs md:text-base">&copy; 2025 Plateau State Wheat Farmers Association. All rights reserved.</p>
+    </footer>
+    <script>
+        // Background image slideshow for hero section
+        const heroImages = [
+            'image/img1.png',
+            'image/img2.png',
+            'image/img3.png',
+            'image/img4.png'
+        ];
+        var currentImageIndex = 0;
+
+        function changeHeroBackground() {
+            const heroSection = document.getElementById('hero');
+            heroSection.style.backgroundImage = `url(${heroImages[currentImageIndex]})`;
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+        }
+
+        // Set initial background image
+        changeHeroBackground();
+
+        // Change image every 5 seconds
+        setInterval(changeHeroBackground, 5000);
+
+        // Existing navigation and authentication logic
+        function updateNav() {
+            const token = localStorage.getItem('token');
+            const navContent = `
+                <a href="index.html" class="hover:text-yellow-200 transition duration-200">Home</a>
+                <a href="index.html#about" class="hover:text-yellow-200 transition duration-200">About</a>
+                <a href="contact.html" class="hover:text-yellow-200 transition duration-200">Contact</a>
+            `;
+            var authContent = '';
+            if (token) {
+                fetch('/api/user', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+                .then(response => {
+                    if (response.status === 401 || response.status === 403) {
+                        alert('Session expired. Please login again.');
+                        localStorage.removeItem('token');
+                        window.location.href = 'login.html';
+                    }
+                    return response.json();
+                })
+                .then(user => {
+                    if (user.role === 'admin') {
+                        authContent += `<a href="admin.html" class="hover:text-yellow-200 transition duration-200">Members</a>`;
+                        authContent += `<a href="admin-news.html" class="hover:text-yellow-200 transition duration-200">News</a>`;
+                    }
+                    authContent += `<button onclick="logout()" class="hover:text-yellow-200 transition duration-200">Logout</button>`;
+                    document.getElementById('nav').innerHTML = navContent + authContent;
+                    document.getElementById('mobile-nav').innerHTML = navContent + authContent;
+                });
+            } else {
+                authContent = `
+                    <a href="register.html" class="hover:text-yellow-200 transition duration-200">Register</a>
+                    <a href="login.html" class="hover:text-yellow-200 transition duration-200">Login</a>
+                `;
+                document.getElementById('nav').innerHTML = navContent + authContent;
+                document.getElementById('mobile-nav').innerHTML = navContent + authContent;
+            }
+        }
+        function logout() {
+            localStorage.removeItem('token');
+            window.location.href = 'index.html';
+        }
+        updateNav();
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Fetch and display news with image and video side by side (if both), text below, or full-width media with text below
+        fetch('/api/news')
+            .then(response => response.json())
+            .then(data => {
+                const newsList = document.getElementById('newsList');
+                data.forEach(news => {
+                    const shortDesc = news.description.length > 100 ? news.description.substring(0, 100) + '...' : news.description;
+                    const item = document.createElement('div');
+                    item.classList.add('border-b', 'pb-4');
+                    let mediaHTML = '';
+                    if (news.imageUrl && news.videoUrl) {
+                        mediaHTML = `
+                            <div class="flex space-x-4 mb-2 md:space-x-4 news-media-container">
+                                <img src="${news.imageUrl}" alt="News Image" class="w-48 h-48 object-cover rounded-md news-media">
+                                <video src="${news.videoUrl}" controls class="w-48 h-48 object-cover rounded-md news-media"></video>
+                            </div>
+                        `;
+                    } else if (news.imageUrl) {
+                        mediaHTML = `<img src="${news.imageUrl}" alt="News Image" class="w-full h-48 object-cover rounded-md mb-2">`;
+                    } else if (news.videoUrl) {
+                        mediaHTML = `<video src="${news.videoUrl}" controls class="w-full h-48 object-cover rounded-md mb-2"></video>`;
+                    }
+                    item.innerHTML = `
+                        ${mediaHTML}
+                        <div>
+                            <h4 class="font-semibold text-sm md:text-base">${news.title}</h4>
+                            <p id="short-${news._id}" class="text-gray-700 text-sm md:text-base">${shortDesc}</p>
+                            <p id="full-${news._id}" class="hidden text-gray-700 text-sm md:text-base">${news.description}</p>
+                            <button onclick="toggleDesc('${news._id}')" class="text-green-600 hover:underline text-sm md:text-base">See more</button>
+                        </div>
+                    `;
+                    newsList.appendChild(item);
+                });
+            });
+
+        function toggleDesc(id) {
+            const short = document.getElementById(`short-${id}`);
+            const full = document.getElementById(`full-${id}`);
+            const button = event.target;
+            if (short.style.display === 'none') {
+                short.style.display = 'block';
+                full.style.display = 'none';
+                button.textContent = 'See more';
+            } else {
+                short.style.display = 'none';
+                full.style.display = 'block';
+                button.textContent = 'See less';
+            }
+        }
+    </script>
+</body>
+</html>
