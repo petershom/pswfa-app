@@ -10,7 +10,7 @@ const memberSchema = new mongoose.Schema({
     residentialAddress: { type: String, required: true },
     phone: { type: String, required: true },
     nextOfKin: { type: String, required: true },
-    enrollmentStatus: { type: String, required: true, enum: ['Direct Farmer', 'Group Farmer'] },
+    enrollmentStatus: { type: String, required: true, enum: ['Direct Farmer', 'Group Farmer', 'Pending', 'Active', 'Inactive'] },
     dateEnrollment: { type: Date, required: true },
     shortFarmHistory: { type: String, required: true },
     refereeLgaCoordinator: { type: String },
